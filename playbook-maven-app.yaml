@@ -1,0 +1,29 @@
+- name: play maven_app
+  hosts: ub2
+  gather_facts: no
+ 
+  tasks:
+    - name: Copy maven_app.yml on master
+      copy: src=maven_app.yml dest=/home/fitec/ owner=fitec group=fitec mode=0644
+      tags:
+        - copy
+ 
+    # - name: Sleep 30 sec
+    #   command: sleep 60
+    #   tags: 
+    #     - sleep
+ 
+    - name: Deploy maven_app
+      command: kubectl apply -f maven_app.yml
+      tags:
+        - deploy
+      register: deploy_result
+ 
+    - command: "echo {{ item }}"
+      with_items:
+        - "{{ deploy_result.stdout_lines }}"
+
+    # - name: Delete maven_app
+    #   command: kubectl delete -f maven_app.yml
+    #   tags:
+    #     - delete

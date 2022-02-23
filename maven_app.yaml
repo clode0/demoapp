@@ -1,0 +1,41 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: mavenapp
+  name: mavenapp
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: mavenapp
+  strategy: {}
+  template:
+    metadata:
+      labels:
+        app: mavenapp
+    spec:
+      containers:
+        - image: jdoxv/demoapp:21
+          name: demoapp
+          resources: {}
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: mavenapp
+  name: mavenapp
+spec:
+  ports:
+    - port: 8080
+      protocol: TCP
+      targetPort: 8080
+      nodePort: 31001
+  selector:
+    app: mavenapp
+  type: NodePort
+status:
+  loadBalancer: {}
+
