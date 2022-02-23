@@ -14,7 +14,7 @@
     #     - sleep
  
     - name: Deploy maven_app
-      command: kubectl apply -f maven_app.yml
+      command: kubectl apply -f maven_app.yaml
       tags:
         - deploy
       register: deploy_result
@@ -24,6 +24,6 @@
         - "{{ deploy_result.stdout_lines }}"
 
     # - name: Delete maven_app
-    #   command: kubectl delete -f maven_app.yml
+    #   command: kubectl delete -f maven_app.yaml
     #   tags:
     #     - delete
