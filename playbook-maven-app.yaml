@@ -19,9 +19,8 @@
         - deploy
       register: deploy_result
  
-    - command: "echo {{ item }}"
-      with_items:
-        - "{{ deploy_result.stdout_lines }}"
+    - debug:
+        msg: "{{ deploy_result.stdout_lines }}"
 
     # - name: Delete maven_app
     #   command: kubectl delete -f maven_app.yaml
