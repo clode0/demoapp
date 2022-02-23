@@ -17,7 +17,7 @@ spec:
         app: mavenapp
     spec:
       containers:
-        - image: jdoxv/demoapp:32
+        - image: jdoxv/demoapp:34
           name: demoapp
           resources: {}
 ---

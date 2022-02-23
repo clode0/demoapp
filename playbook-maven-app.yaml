@@ -4,7 +4,7 @@
  
   tasks:
     - name: Copy maven_app.yml on master
-      copy: src=maven_app.yml dest=/home/fitec/ owner=fitec group=fitec mode=0644
+      copy: src=maven_app.yaml dest=/home/fitec/ owner=fitec group=fitec mode=0644
       tags:
         - copy
  
